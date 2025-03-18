@@ -1,0 +1,14 @@
+C:\Users\ADMIN\Desktop\trabajo\compu\semana9\clasesemana9\bin\Debug\net9.0\clasesemana9.exe
+C:\Users\ADMIN\Desktop\trabajo\compu\semana9\clasesemana9\bin\Debug\net9.0\clasesemana9.deps.json
+C:\Users\ADMIN\Desktop\trabajo\compu\semana9\clasesemana9\bin\Debug\net9.0\clasesemana9.runtimeconfig.json
+C:\Users\ADMIN\Desktop\trabajo\compu\semana9\clasesemana9\bin\Debug\net9.0\clasesemana9.dll
+C:\Users\ADMIN\Desktop\trabajo\compu\semana9\clasesemana9\bin\Debug\net9.0\clasesemana9.pdb
+C:\Users\ADMIN\Desktop\trabajo\compu\semana9\clasesemana9\obj\Debug\net9.0\clasesemana9.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ADMIN\Desktop\trabajo\compu\semana9\clasesemana9\obj\Debug\net9.0\clasesemana9.AssemblyInfoInputs.cache
+C:\Users\ADMIN\Desktop\trabajo\compu\semana9\clasesemana9\obj\Debug\net9.0\clasesemana9.AssemblyInfo.cs
+C:\Users\ADMIN\Desktop\trabajo\compu\semana9\clasesemana9\obj\Debug\net9.0\clasesemana9.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Desktop\trabajo\compu\semana9\clasesemana9\obj\Debug\net9.0\clasesemana9.dll
+C:\Users\ADMIN\Desktop\trabajo\compu\semana9\clasesemana9\obj\Debug\net9.0\refint\clasesemana9.dll
+C:\Users\ADMIN\Desktop\trabajo\compu\semana9\clasesemana9\obj\Debug\net9.0\clasesemana9.pdb
+C:\Users\ADMIN\Desktop\trabajo\compu\semana9\clasesemana9\obj\Debug\net9.0\clasesemana9.genruntimeconfig.cache
+C:\Users\ADMIN\Desktop\trabajo\compu\semana9\clasesemana9\obj\Debug\net9.0\ref\clasesemana9.dll
