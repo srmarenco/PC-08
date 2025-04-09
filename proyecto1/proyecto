@@ -1,0 +1,238 @@
+// Autores: José Javier Vega de León 1297325 | Santiago Raul Marenco Díaz 1273525
+// Programa: Proyecto1.cs
+// Descripción: Juego de rol por turnos
+// Lenguaje: C#
+// Terminación del programa 8/04/2025
+// 
+
+using System;
+using System.Net;
+
+class JuegoAventura
+{
+    #pragma warning disable
+    static Random rand = new Random();
+    static string personaje, camino, name;
+    static int vida, ataqueBase, enemigosDerrotados = 0;
+    static bool vf, vf1, vf2, vf3, vf4, cofreEntregado;
+    #pragma warning restore
+    static void Main()
+    {
+        string banner = """
+                                                                                                      
+         ,--.                                                                                         
+       ,--.'|                     ,---,       ___                ,---,.                               
+   ,--,:  : |  ,--,             ,--.' |     ,--.'|_            ,'  .' |                               
+,`--.'`|  ' :,--.'|             |  |  :     |  | :,'         ,---.'   |         ,--,  __  ,-.         
+|   :  :  | ||  |,     ,----._,.:  :  :     :  : ' :         |   |   .'       ,'_ /|,' ,'/ /|         
+:   |   \ | :`--'_    /   /  ' /:  |  |,--.;__,'  /          :   :  :    .--. |  | :'  | |' |   .--,  
+|   : '  '; |,' ,'|  |   :     ||  :  '   |  |   |           :   |  |-,,'_ /| :  . ||  |   ,' /_ ./|  
+'   ' ;.    ;'  | |  |   | .\  .|  |   /' :__,'| :           |   :  ;/||  ' | |  . .'  :  /, ' , ' :  
+|   | | \   ||  | :  .   ; ';  |'  :  | | | '  : |__         |   |   .'|  | ' |  | ||  | '/___/ \: |  
+'   : |  ; .''  : |__'   .   . ||  |  ' | : |  | '.'|        '   :  '  :  | : ;  ; |;  : | .  \  ' |  
+|   | '`--'  |  | '.'|`---`-'| ||  :  :_:,' ;  :    ;        |   |  |  '  :  `--'   \  , ;  \  ;   :  
+'   : |      ;  :    ;.'__/\_: ||  | ,'     |  ,   /         |   :  \  :  ,      .-./---'    \  \  ;  
+;   |.'      |  ,   / |   :    :`--''        ---`-'          |   | ,'   `--`----'             :  \  \ 
+'---'         ---`-'   \   \  /                              `----'                            \  ' ; 
+                        `--`-'                                                                  `--`  
+""";
+        vf = false;
+        cofreEntregado = false;
+        Console.WriteLine(banner);
+        Console.WriteLine("\nHace mucho, antes de que el tiempo tuviera nombre, se conocía la leyenda de la penumbra del dragón.\n");
+        Console.WriteLine("Un cofre ubicado en lo más profundo de las ruinas Alessia, en donde ningún hombre ha podido pisar jamás.\n");
+        Console.WriteLine("Pero incluso así, hay locos que osan tentar su suerte y enfrentarse a los peligros que la noche les prepara.\n");
+        Console.WriteLine("¿Estás listo para el reto?");
+        while (!vf)
+        {
+            try
+            {
+                
+                Console.Write("Ingresa tu nombre de guerrero: ");
+                #pragma warning disable
+                name = Console.ReadLine();
+                #pragma warning restore
+                vf = true;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("¡Escribe correctamente tu nombre, Jugador!");
+            }
+        }
+        
+
+        SeleccionarPersonaje();
+        SeleccionarCamino();
+        while (vida > 0 && enemigosDerrotados < 3)
+        {
+            MostrarMenu();
+        }
+        Console.WriteLine($"\nFin del juego. Gracias por jugar, {name}!");
+    }
+
+    static void SeleccionarPersonaje()
+    {
+        Console.WriteLine($"Elige tu ocupación {name}:\n1. Mago\n2. Caballero\n3. Arquera");
+        #pragma warning disable       
+        string opcion = Console.ReadLine();
+        #pragma warning restore
+        if (opcion == "1")
+        {
+            personaje = "el Mago";
+            vida = 100;
+            ataqueBase = 20;
+        }
+        else if (opcion == "2")
+        {
+            personaje = "el Caballero";
+            vida = 70;
+            ataqueBase = 30;
+        }
+        else if (opcion == "3")
+        {
+            personaje = "la Arquera";
+            vida = 85;
+            ataqueBase = 25;
+        }
+        else
+        {
+            Console.WriteLine($"No has elegido bien, pero seleccionaremos mago por tí {name}.");
+            personaje = "el Mago";
+            vida = 100;
+            ataqueBase = 20;
+        }
+        Console.WriteLine($"Tu nueva aventura te espera, {name} {personaje}, cuentas con {vida} de vida y {ataqueBase} de ataque base.\n");
+    }
+
+    static void SeleccionarCamino()
+    {
+        Console.WriteLine($"Elige el camino que recorrerás {name}:\n1. Bosque oscuro\n2. Cueva sombría\n3. Camino de piedra");
+        #pragma warning disable     
+        string opcion = Console.ReadLine();
+        #pragma warning restore
+        if (opcion == "1")
+        {
+            camino = "Bosque oscuro";
+            Console.WriteLine($"Has elegido el Bosque oscuro. Aquí puedes hallar tesoros sorprendentes o caer en trampas, ten cuidado con el entorno {name}.");
+        }
+        else if (opcion == "2")
+        {
+            camino = "Cueva sombría";
+            Console.WriteLine($"Has elegido la Cueva sombría. Aquí los enemigos golpean primero, mantente alerta del popo de murciélago {name}.");
+        }
+        else if (opcion == "3")
+        {
+            camino = "Camino de piedra";
+            Console.WriteLine($"Has elegido el Camino de piedra. Es menos peligroso, pero los cofres pueden estar vacíos con un 25% de probabilidad, procura no ir descalzo {name}.");
+        }
+        else
+        {
+            Console.WriteLine($"No has elegido bien, pero elegiremos Bosque Oscuro por tí {name}.");
+            camino = "Bosque oscuro";
+        }
+    }
+
+    static void MostrarMenu()
+    {
+        Console.WriteLine($"\n{camino} - Vida: {vida}, Ataque: {ataqueBase}, Enemigos derrotados: {enemigosDerrotados}");
+        Console.WriteLine($"¿Qué quieres hacer, {name}?:\n1. Continuar la aventura\n2. Rendirte");
+            #pragma warning disable 
+            string opcion = Console.ReadLine();
+            #pragma warning restore
+            if (opcion == "1")
+                IniciarCombate();
+            else if (opcion == "2")
+                vida = 0;
+            else
+                Console.WriteLine($"Elige correctamente tu acción, {name}.");
+    }
+
+    static void IniciarCombate()
+    {
+        string[] enemigos = {"Bandido", "Monstruo", "Jefe Final" };
+        int cantidadEnemigos = enemigosDerrotados == 2 ? 1 : (enemigosDerrotados == 0 ? rand.Next(1, 3) : rand.Next(1, 2));
+        int[] vidaEnemigos = new int[cantidadEnemigos];
+        int[] ataqueEnemigos = new int[cantidadEnemigos];
+
+        for (int i = 0; i < cantidadEnemigos; i++)
+        {
+            vidaEnemigos[i] = enemigosDerrotados == 2 ? 70 : (enemigosDerrotados == 0 ? 20 : 25);
+            ataqueEnemigos[i] = rand.Next(1, 6) + (enemigosDerrotados * 5);
+        }
+
+        Console.WriteLine($"¡Han aparecido {cantidadEnemigos} {enemigos[enemigosDerrotados]}(s)!");
+
+        while (vida > 0 && cantidadEnemigos > 0)
+        {
+            Console.WriteLine("¿A qué enemigo atacarás? Si prefieres huir elige 0 pero ¡perderás 10 de vida!:");
+            for (int i = 0; i < cantidadEnemigos; i++)
+            {
+                Console.WriteLine($"{i + 1}. {enemigos[enemigosDerrotados]} - Vida: {vidaEnemigos[i]}");
+            }
+            #pragma warning disable
+            int enemigoSeleccionado = int.Parse(Console.ReadLine()) - 1;
+            #pragma warning restore
+            if (enemigoSeleccionado == -1)
+            {
+                vida -= 10;
+                Console.WriteLine($"¡Huiste del combate, {name}! Pierdes 10 puntos de vida.");
+                return;
+            }
+
+            if (enemigoSeleccionado >= 0 && enemigoSeleccionado < cantidadEnemigos)//45646456456456456546
+            {
+                int ataqueJugador = rand.Next(ataqueBase - 5, ataqueBase + 6);
+                vidaEnemigos[enemigoSeleccionado] -= ataqueJugador;
+                Console.WriteLine($"¡Atacaste al enemigo {enemigoSeleccionado + 1} con {ataqueJugador} de daño!");
+                
+                if (vidaEnemigos[enemigoSeleccionado] <= 0)
+                {
+                    Console.WriteLine($"¡El enemigo {enemigoSeleccionado + 1} ha sido derrotado!");
+                    Console.WriteLine($"¡Buen trabajo {name}!");
+                    for (int j = enemigoSeleccionado; j < cantidadEnemigos - 1; j++)
+                    {
+                        vidaEnemigos[j] = vidaEnemigos[j + 1];
+                        ataqueEnemigos[j] = ataqueEnemigos[j + 1];
+                    }
+                    cantidadEnemigos--;
+                }
+            }
+            
+            for (int i = 0; i < cantidadEnemigos; i++)
+            {
+                vida -= ataqueEnemigos[i];
+                Console.WriteLine($"¡El enemigo {i + 1} te ataca! Te quedan {vida} de vida.");
+            }
+        }
+        
+        if (vida > 0)
+            {
+            enemigosDerrotados++;
+            Console.WriteLine($"Puedes abrir un cofre misterioso. (1. Sí / 2. No)");
+            if (Console.ReadLine() == "1")
+                AbrirCofre();
+            else
+                Console.WriteLine($"Tu vida actual: {vida} y tu ataque base: {ataqueBase}");
+            }
+    }
+    static void AbrirCofre(){
+        Console.WriteLine($"¡Has encontrado un cofre, {name}!");
+        if (camino == "camino de piedra" && rand.Next(0,100) < 25){
+            Console.WriteLine("¡El cofre estaba vacío");
+        }
+        int contenido = rand.Next(0,2);
+        if (contenido == 0){
+            vida = vida +10;
+            Console.WriteLine("¡El cofre contenía energía! ganas 10 de vida");
+        }
+        else if (contenido == 1){
+            ataqueBase = ataqueBase + 7;
+            Console.WriteLine("¡El cofre contenía más poder! ganas 7 de ataque base");
+        }
+        else{
+            vida = vida - 5;
+            Console.WriteLine("¡el cofre estaba envenenado! pierdes 5 de vida");
+        }
+        Console.WriteLine($"Tu vida actual: {vida} y tu ataque base: {ataqueBase}");
+    }
+}
