@@ -182,6 +182,28 @@ class JuegoAventura
             if (enemigoSeleccionado >= 0 && enemigoSeleccionado < cantidadEnemigos)//45646456456456456546
             {
                 int ataqueJugador = rand.Next(ataqueBase - 5, ataqueBase + 6);
+                if (camino == "Camino de piedra"){
+                    for (int i = 0; i < cantidadEnemigos; i++)
+                    {
+                        vida -= ataqueEnemigos[i];
+                        Console.WriteLine($"¡El enemigo {i + 1} te ataca! Te quedan {vida} de vida.");
+
+                        vidaEnemigos[enemigoSeleccionado] -= ataqueJugador;
+                        Console.WriteLine($"¡Atacaste al enemigo {enemigoSeleccionado + 1} con {ataqueJugador} de daño!");
+                        
+                        if (vidaEnemigos[enemigoSeleccionado] <= 0)
+                        {
+                            Console.WriteLine($"¡El enemigo {enemigoSeleccionado + 1} ha sido derrotado!");
+                            Console.WriteLine($"¡Buen trabajo {name}!");
+                            for (int j = enemigoSeleccionado; j < cantidadEnemigos - 1; j++)
+                            {
+                                vidaEnemigos[j] = vidaEnemigos[j + 1];
+                                ataqueEnemigos[j] = ataqueEnemigos[j + 1];
+                            }
+                            cantidadEnemigos--;
+                        }
+                    }
+                }
                 vidaEnemigos[enemigoSeleccionado] -= ataqueJugador;
                 Console.WriteLine($"¡Atacaste al enemigo {enemigoSeleccionado + 1} con {ataqueJugador} de daño!");
                 
@@ -217,7 +239,7 @@ class JuegoAventura
     }
     static void AbrirCofre(){
         Console.WriteLine($"¡Has encontrado un cofre, {name}!");
-        if (camino == "camino de piedra" && rand.Next(0,100) < 25){
+        if (camino == "Camino de piedra" && rand.Next(0,100) < 25){
             Console.WriteLine("¡El cofre estaba vacío");
         }
         int contenido = rand.Next(0,2);
