@@ -1,1 +1,57 @@
+using System;
+using System.Runtime.CompilerServices;
+public class Estudiante
+{
+string nombre;
+int edad;
+string carrera;
+int carnet;
+int notaAdmision;
 
+
+public static void Main()
+{
+    Estudiante estudiante = new Estudiante();
+    
+    Console.WriteLine("Ingrese sus datos de Estudiante");
+    Console.Write("Nombre: ");
+    estudiante.nombre = Console.ReadLine();
+    Console.WriteLine();
+    Console.Write("Edad: ");
+    estudiante.edad = Convert.ToInt32(Console.ReadLine());
+    Console.WriteLine();
+    Console.Write("Carrera: ");
+    estudiante.carrera = Console.ReadLine();
+    Console.WriteLine();
+    Console.Write("Carnet: ");
+    estudiante.carnet = Convert.ToInt32(Console.ReadLine());
+    Console.WriteLine();
+    Console.Write("Nota de Admision: ");
+    estudiante.notaAdmision = Convert.ToInt32(Console.ReadLine());
+    Console.WriteLine();
+}
+Estudiante(int edad, string nombre, int carnet, int notaAdmision, string carrera) {
+    this.nombre = nombre;
+    this.edad = edad;
+    this.carrera = carrera;
+    this.carnet = carnet;
+    this.notaAdmision = notaAdmision;
+}
+void MostrarResumen() {
+    Console.WriteLine(this.nombre);
+    Console.WriteLine(this.edad);
+    Console.WriteLine(this.carrera);
+    Console.WriteLine(this.carnet);
+    Console.WriteLine(this.notaAdmision);
+}
+void PuedeMatricular() {
+    string carnete = carnet.ToString();
+    string carnett = carnete.Substring(carnete.Length - 4);
+    if (notaAdmision >= 75 && carnett == "2025"){
+        Console.WriteLine("Felicitaciones, usted puede matricular");
+    }
+    else{
+        Console.WriteLine("Lo lamentamos pero no puede matricular");
+    }
+}
+}
