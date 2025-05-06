@@ -1,0 +1,99 @@
+// Santiago Marenco | 1273525
+// Programa: Actividad1 - Semana 17
+// Descripcion: toma la nota de 10 personas y verifica quienes ganaron y perdieron, también saca un promedio
+// Lenguaje: C#
+// Fecha: 06/05/2025
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        bool VF = false;
+        string[] nombres = new string[10];
+        int[] numeros = new int[10];
+
+        Console.WriteLine("Ingrese 10 nombres:");
+        for (int i = 0; i < 10; i++)
+        {
+            Console.Write($"Nombre {i + 1}: ");
+            nombres[i] = Console.ReadLine();
+        }
+
+        Console.WriteLine("Ingrese 10 notas:");
+        for (int i = 0; i < 10; i++)
+        {
+            Console.Write($"Nota de {nombres[i]}: ");
+            // Validación básica de entrada
+            while (!int.TryParse(Console.ReadLine(), out numeros[i]))
+            {
+                Console.WriteLine("Por favor ingrese un número válido:");
+            }
+        }
+
+        while (!VF)
+        {
+            Console.WriteLine("\nMenú – Elija su opción");
+            Console.WriteLine("1. Mostrar nombre y nota de alumnos que aprobaron el curso.");
+            Console.WriteLine("2. Mostrar nombre y nota de alumnos que NO aprobaron el curso.");
+            Console.WriteLine("3. Mostrar el promedio de notas del grupo.");
+            Console.WriteLine("4. Salir del programa");
+            Console.Write("Opción: ");
+
+            string input = Console.ReadLine();
+            int op;
+
+            if (!int.TryParse(input, out op))
+            {
+                Console.WriteLine("Opción inválida. Intente de nuevo.");
+                continue;
+            }
+
+            switch (op)
+            {
+                case 1:
+                    Console.WriteLine("\nAlumnos que aprobaron (nota >= 65):");
+                    for (int i = 0; i < 10; i++)
+                    {
+                        if (numeros[i] >= 65)
+                        {
+                            Console.WriteLine($"{nombres[i]} - {numeros[i]}");
+                        }
+                    }
+                    break;
+
+                case 2:
+                    Console.WriteLine("\nAlumnos que NO aprobaron (nota < 65):");
+                    for (int i = 0; i < 10; i++)
+                    {
+                        if (numeros[i] < 65)
+                        {
+                            Console.WriteLine($"{nombres[i]} - {numeros[i]}");
+                        }
+                    }
+                    break;
+
+                case 3:
+                    int suma = 0;
+                    for (int i = 0; i < 10; i++)
+                    {
+                        suma += numeros[i];
+                    }
+                    double promedio = suma / 10.0;
+                    Console.WriteLine($"\nEl promedio del grupo es: {promedio:F2}");
+                    break;
+
+                case 4:
+                    VF = true;
+                    Console.WriteLine("Saliendo del programa...");
+                    break;
+
+                default:
+                    Console.WriteLine("Opción inválida. Intente de nuevo.");
+                    break;
+            }
+        }
+    }
+}
+// miku
